@@ -34,15 +34,15 @@ export function AlertsSection() {
           {alerts.map((alert, index) => {
             const Icon = alert.icon
             const bgColor = {
-              warning: 'bg-orange-50 border-l-4 border-orange-400',
-              info: 'bg-blue-50 border-l-4 border-blue-400',
-              danger: 'bg-red-50 border-l-4 border-red-400',
+              warning: 'bg-[rgba(126,217,87,0.1)] border-l-4 border-accent',
+              info: 'bg-[rgba(0,151,178,0.1)] border-l-4 border-primary',
+              danger: 'bg-red-50 border-l-4 border-destructive',
             }[alert.severity]
 
             const iconColor = {
-              warning: 'text-orange-600',
-              info: 'text-blue-600',
-              danger: 'text-red-600',
+              warning: 'text-accent',
+              info: 'text-primary',
+              danger: 'text-destructive',
             }[alert.severity]
 
             return (

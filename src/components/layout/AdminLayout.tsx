@@ -4,7 +4,7 @@ import { AdminHeader } from './AdminHeader'
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen bg-background" style={{ border : "2px solid red"}}>
+    <div className="flex h-screen bg-background">
       {/* Sidebar */}
       <AdminSidebar />
 

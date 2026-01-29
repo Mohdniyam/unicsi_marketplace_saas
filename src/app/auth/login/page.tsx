@@ -18,6 +18,7 @@ export default function LoginPage() {
         `${process.env.NEXT_PUBLIC_API_URL}auth/login`,
         {
           method: 'POST',
+          credentials: 'include', // 🔥 REQUIRED
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
         }
@@ -25,22 +26,20 @@ export default function LoginPage() {
 
       const data = await res.json()
 
-      console.log(data.data.role)
-
       if (!res.ok) throw new Error(data.message)
 
-      // Store token (cookie preferred)
-      document.cookie = `access_token=${data.token}; path=/`
-
-      // Redirect based on role
-      if (data.data?.role === 'ADMIN') {
-        console.log("ADMIN")
-        router.push('/admin/dashboard')
+      // 🚀 Redirect based on role (NO cookie handling here)
+      if (data.data.role === 'ADMIN') {
+        router.replace('/admin/dashboard')
+      } else if (data.data.role === 'PARTNER') {
+        router.replace('/partner/dashboard')
+      } else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
+        router.replace('/kam/dashboard')
       } else {
-        router.push('/')
+        router.replace('/')
       }
     } catch (err: any) {
-      alert(err.message)
+      alert(err.message || 'Login failed')
     } finally {
       setLoading(false)
     }

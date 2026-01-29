@@ -27,6 +27,7 @@ export default function KYCVerificationPage() {
   })
 
   const handleViewDocument = (doc: KYCDocument) => {
+    console.log("doc ==>",doc)
     setSelectedDocument(doc)
     setIsModalOpen(true)
   }

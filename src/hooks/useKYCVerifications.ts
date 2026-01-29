@@ -40,7 +40,7 @@ export interface KYCVerification {
     expired: number
 }
 
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 export function useKYCVerifications() {
     const [documents, setDocuments] = useState<KYCDocument[]>([])
@@ -52,13 +52,15 @@ export function useKYCVerifications() {
             try {
                 setLoading(true)
                 setError(null)
-                const response = await fetch(`${API_BASE_URL}/api/v1/admin/get-all-kyc-verifications`)
+                const response = await fetch(`${API_BASE_URL}admin/get-all-kyc-verifications`)
 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch KYC data: ${response.statusText}`)
                 }
 
                 const data = await response.json()
+
+                console.log("kyc-details", data)
 
                 // Transform backend data to KYCDocument format
                 const transformedDocuments: KYCDocument[] = data.data.map((supplier: any) => ({
@@ -71,7 +73,7 @@ export function useKYCVerifications() {
                     documentType: 'KYC_VERIFICATION',
                     gstDetails: supplier.gst_details,
                     submittedAt: supplier.createdAt,
-                    status: supplier.gst_details ? 'pending' : 'pending',
+                    status: supplier.kyc_details.status,
                     verifiedAt: undefined,
                     rejectionReason: undefined,
                 }))
@@ -93,7 +95,7 @@ export function useKYCVerifications() {
         setLoading(true)
         try {
             // Call backend verification API
-            const response = await fetch(`${API_BASE_URL}/api/v1/admin/verify-kyc`, {
+            const response = await fetch(`${API_BASE_URL}admin/supplier-verify`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,7 +133,7 @@ export function useKYCVerifications() {
         setLoading(true)
         try {
             // Call backend rejection API
-            const response = await fetch(`${API_BASE_URL}/api/v1/admin/reject-kyc`, {
+            const response = await fetch(`${API_BASE_URL}admin/supplier/kyc/reject`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
