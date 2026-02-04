@@ -55,10 +55,10 @@ export function TopSuppliers() {
       <CardContent>
         <div className="space-y-4">
           {topSuppliers.map((supplier) => (
-            <div key={supplier.id} className="flex items-center justify-between p-3 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-colors">
+            <div key={supplier.id} className="flex items-center justify-between p-3 my-button rounded-lg hover:my-button transition-colors">
               <div className="flex items-center gap-3 flex-1">
                 <Avatar className="h-10 w-10">
-                  <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+                  <AvatarFallback className="my-button text-primary-foreground text-xs font-semibold">
                     {supplier.name.substring(0, 2).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>

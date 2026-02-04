@@ -86,7 +86,7 @@ export default function SuppliersPage() {
           <h1 className="text-3xl font-bold text-foreground">All Suppliers</h1>
           <p className="text-muted-foreground">Manage and monitor all supplier accounts</p>
         </div>
-        <Button className="bg-primary hover:bg-primary/90">
+        <Button className="my-button hover:my-button">
           <Plus className="w-4 h-4 mr-2" />
           Add Supplier
         </Button>

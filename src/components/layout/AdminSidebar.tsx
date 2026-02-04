@@ -170,7 +170,7 @@ export function AdminSidebar() {
       {/* Logo Section */}
       <div className="p-6 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary/30 to-primary/60 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full my-button text-primary-foreground flex items-center justify-center">
             <span className="text-sm font-bold text-primary">U</span>
           </div>
           <div>
@@ -195,8 +195,8 @@ export function AdminSidebar() {
                   className={cn(
                     'flex items-center justify-between px-4 py-3 rounded-lg cursor-pointer transition-all',
                     active
-                      ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-                      : 'text-sidebar-foreground hover:bg-secondary/30'
+                      ? 'my-button text-sidebar-primary-foreground'
+                      : 'text-sidebar-foreground hover:my-button'
                   )}
                   onClick={() => {
                     if (hasChildren) {
@@ -236,8 +236,8 @@ export function AdminSidebar() {
                           className={cn(
                             'block px-4 py-2 rounded-lg text-sm transition-all no-underline',
                             pathname === child.href
-                              ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-                              : 'text-sidebar-foreground hover:bg-secondary/30'
+                              ? 'my-button text-sidebar-primary-foreground'
+                              : 'text-sidebar-foreground hover:my-button'
                           )}
                         >
                           {child.label}

@@ -36,7 +36,7 @@ export function AdminHeader() {
           {/* Search Button */}
           <Button
             variant="default"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6"
+            className="my-button hover:bg-primary/90 text-primary-foreground rounded-full px-6"
           >
             Search
           </Button>
@@ -49,7 +49,7 @@ export function AdminHeader() {
           {/* Notifications */}
           <Button variant="ghost" size="icon" className="rounded-full relative">
             <Bell className="w-5 h-5 text-foreground" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
+            <span className="absolute top-1 right-1 w-2 h-2 my-button rounded-full" />
           </Button>
 
           {/* User Profile Dropdown */}
@@ -57,11 +57,11 @@ export function AdminHeader() {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="flex items-center gap-3 px-3 py-2 h-auto rounded-lg hover:bg-secondary/30"
+                className="flex items-center gap-3 px-3 py-2 h-auto rounded-lg hover:my-button"
               >
                 <Avatar className="h-8 w-8">
                   <AvatarImage src="/placeholder.svg" alt={userName} />
-                  <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+                  <AvatarFallback className="my-button text-primary-foreground text-xs font-semibold">
                     {userInitials}
                   </AvatarFallback>
                 </Avatar>

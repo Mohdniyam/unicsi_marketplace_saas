@@ -53,13 +53,13 @@ export function DashboardContent() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              <button className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 font-medium transition-colors">
+              <button className="w-full px-4 py-2 my-button text-primary-foreground rounded-lg hover:bg-primary/90 font-medium transition-colors">
                 Review Pending Products
               </button>
-              <button className="w-full px-4 py-2 bg-secondary text-foreground border border-border rounded-lg hover:bg-secondary/80 font-medium transition-colors">
+              <button className="w-full px-4 py-2 my-button text-foreground border border-border rounded-lg hover:bg-secondary/80 font-medium transition-colors">
                 View High RTO Orders
               </button>
-              <button className="w-full px-4 py-2 bg-secondary text-foreground border border-border rounded-lg hover:bg-secondary/80 font-medium transition-colors">
+              <button className="w-full px-4 py-2 my-button text-foreground border border-border rounded-lg hover:bg-secondary/80 font-medium transition-colors">
                 Manage Suppliers
               </button>
             </div>

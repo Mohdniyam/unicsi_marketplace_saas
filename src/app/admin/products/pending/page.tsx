@@ -17,7 +17,7 @@ export default function PendingApprovalsPage() {
           <h1 className="text-3xl font-bold text-foreground">Pending Approvals</h1>
           <p className="text-muted-foreground">Review and approve products pending verification</p>
         </div>
-        <Badge variant="default" className="text-lg px-4 py-2">
+        <Badge variant="default" className="my-button text-primary-foreground text-lg px-4 py-2">
           47 Pending
         </Badge>
       </div>
@@ -35,7 +35,7 @@ export default function PendingApprovalsPage() {
               className="bg-transparent flex-1 outline-none text-sm"
             />
           </div>
-          <Button variant="outline">
+          <Button variant="outline" className="my-button text-primary-foreground">
             <Filter className="w-4 h-4 mr-2" />
             Filters
           </Button>
