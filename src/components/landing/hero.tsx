@@ -51,14 +51,11 @@ const Hero = () => {
             >
                 {/* Background Image */}
                 <div
-                    className="absolute inset-1 bg-cover bg-no-repeat bg-[url('https://unicsi-media-storage.s3.ap-south-1.amazonaws.com/images/banner.png')]"
-                   
-                    
-
+                    className="absolute insert-1 bg-cover bg-no-repeat"
                 />
 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-40 rounded-2xl"></div>
+                <div className="absolute inset-0 bg-[url('https://unicsi-media-storage.s3.ap-south-1.amazonaws.com/images/banner.png')] bg-opacity-40 rounded-2xl bg-cover bg-no-repeat"></div>
 
                 {/* Navigation */}
                 <nav className="relative z-50 px-4 sm:px-6 md:px-8 py-4 sm:py-6 flex justify-between items-center">
@@ -183,7 +180,7 @@ const Hero = () => {
                         />
                         <div className="flex items-center gap-2 sm:gap-3 mr-2 sm:mr-3 flex-shrink-0">
                             <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                                <CameraIcon className="text-gray-500" size={20} />
+                                {/* <CameraIcon className="text-gray-500" size={20} /> */}
                             </button>
                             <button className="my-button text-white px-4 sm:px-6 md:px-10 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-base md:text-lg transition-colors whitespace-nowrap">
                                 Search
@@ -199,7 +196,7 @@ const Hero = () => {
                     <h2 className="text-xl sm:text-3xl md:text-4xl font-normal text-white">Popular Products</h2>
                     <a
                         href="#"
-                        className="text-[#0097B2] hover:text-[#0097B2] transition-colors text-sm sm:text-base md:text-lg font-medium underline"
+                        className="text-[#fff] hover:text-[#fff] transition-colors text-sm sm:text-base md:text-lg font-medium underline"
                     >
                         View more
                     </a>

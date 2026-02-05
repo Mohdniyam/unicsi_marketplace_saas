@@ -97,10 +97,9 @@ const CTASection = () => {
                             className="w-full"
                         />
                         <Button
-                            className="bottom-4 text-base sm:text-lg md:text-[18.94px] py-3 md:py-4 mt-6 md:mt-[47px] w-full"
+                            className="bottom-4 text-base sm:text-lg md:text-[18.94px] py-3 md:py-4 mt-6 md:mt-[47px] w-full my-button"
                             style={{
                                 borderRadius: "50px",
-                                backgroundColor: "#0097B2",
                             }}
                         >
                             Connect my store

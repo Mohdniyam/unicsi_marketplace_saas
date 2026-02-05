@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import inventory1 from "../../../public/images/Inventory.png"
-import inventory2 from "../../../public/images/Inventory2.png"
+// import inventory2 from "../../../public/images/Inventory2.png"
 import { Plus } from "lucide-react"
 import Image from "next/image"
 
@@ -38,7 +38,7 @@ const InventorySection = () => {
               {/* Bottom image - positioned with dotted border */}
               <div className="bg-white rounded-lg shadow-sm overflow-hidden relative w-full sm:w-4/5 md:w-5/6 lg:w-4/5 ml-auto border-2 border-dashed border-blue-300">
                 <Image
-                  src={inventory2 || "/placeholder.svg"}
+                  src={inventory1 || "/placeholder.svg"}
                   alt="Order fulfillment process"
                   className="w-full h-40 sm:h-48 md:h-56 lg:h-auto object-cover"
                 />
@@ -115,7 +115,7 @@ const InventorySection = () => {
 
             {/* CTA Button */}
             <div className="pt-2 sm:pt-3 md:pt-4">
-              <button className="bg-[#0097B2] hover:bg-[#0097B2] text-white font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-colors duration-200 flex items-center gap-2 text-sm sm:text-base">
+              <button className="my-button hover:bg-[#0097B2] text-white font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-colors duration-200 flex items-center gap-2 text-sm sm:text-base">
                 Learn More
                 <svg className="w-4 h-4" fill="none" stroke="#fff" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
