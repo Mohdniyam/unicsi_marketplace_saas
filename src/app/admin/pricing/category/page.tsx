@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Search } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
-import Loading from './loading.jsx'
+import Loading from './loading'
 
 export default function CategoryPricingPage() {
   return (
