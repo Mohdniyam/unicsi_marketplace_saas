@@ -1,10 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -28,16 +26,20 @@ export default function LoginPage() {
 
       if (!res.ok) throw new Error(data.message)
 
-      // 🚀 Redirect based on role (NO cookie handling here)
+      // 🚀 Redirect based on role
       if (data.data.role === 'ADMIN') {
-        router.replace('/admin/dashboard')
-      } else if (data.data.role === 'PARTNER') {
-        router.replace('/partner/dashboard')
-      } else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
-        router.replace('/kam/dashboard')
-      } else {
-        router.replace('/')
+        window.location.href = "https://admin.unicsi.com/dashboard"
       }
+      else if (data.data.role === 'PARTNER') {
+        window.location.href = "https://partner.unicsi.com/dashboard"
+      }
+      else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
+        window.location.href = "https://kam.unicsi.com/dashboard"
+      }
+      else {
+        window.location.href = "https://unicsi.com"
+      }
+
     } catch (err: any) {
       alert(err.message || 'Login failed')
     } finally {
