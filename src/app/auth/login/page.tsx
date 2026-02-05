@@ -28,13 +28,13 @@ export default function LoginPage() {
 
       // 🚀 Redirect based on role
       if (data.data.role === 'ADMIN') {
-        window.location.href = "https://admin.unicsi.com/dashboard"
+        window.location.href = "https://admin.unicsi.com/admin/dashboard"
       }
       else if (data.data.role === 'PARTNER') {
-        window.location.href = "https://partner.unicsi.com/dashboard"
+        window.location.href = "https://partner.unicsi.com/partner/dashboard"
       }
       else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
-        window.location.href = "https://kam.unicsi.com/dashboard"
+        window.location.href = "https://kam.unicsi.com/kam/dashboard"
       }
       else {
         window.location.href = "https://unicsi.com"
