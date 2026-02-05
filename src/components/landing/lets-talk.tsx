@@ -1,10 +1,11 @@
-import call from "../assets/images/call.png"
+import call from "../../../public/images/call.png"
+import Image from "next/image"
 const LetsTalk = () => {
   return (
     <section className="bg-gray-100 px-3 py-8 md:py-12">
       <div className="container mx-auto relative rounded-xl overflow-hidden">
         {/* Background Image */}
-        <img src={call || "/placeholder.svg"} alt="Call Icon" className="w-full h-48 md:h-56 lg:h-64 object-cover" />
+        <Image src={call} alt="Call Icon" className="w-full h-48 md:h-56 lg:h-64 object-cover" />
 
         {/* Overlay Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-6">

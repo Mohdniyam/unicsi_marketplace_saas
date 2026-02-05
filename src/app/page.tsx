@@ -10,6 +10,7 @@ import Partners from "@/components/landing/partners"
 import Logistics from "@/components/landing/logistics"
 import Testimonials from "@/components/landing/testimonials"
 import Footer from "@/components/landing/footer"
+import LetsTalk from "@/components/landing/lets-talk"
 
 export default function Home() {
    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL)
@@ -25,6 +26,7 @@ export default function Home() {
       <Partners />
       <Logistics />
       <Testimonials />
+      <LetsTalk />
       <Footer />
     </main>
   );
