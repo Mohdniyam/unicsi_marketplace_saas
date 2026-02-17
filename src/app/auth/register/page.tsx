@@ -9,13 +9,14 @@ export default function RegisterPage() {
     name: '',
     email: '',
     password: '',
+    role: 'RESELLER',
   })
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+      `${process.env.NEXT_PUBLIC_API_URL}auth/signup`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -62,9 +63,14 @@ export default function RegisterPage() {
         }
       />
 
-      <button className="w-full bg-black text-white p-2">
+      <button className="w-full bg-black text-white p-2 my-button">
         Register
       </button>
+
+      {/* login link */}
+      <p className="text-center">
+        Already have an account? <a href="/auth/login" className="text-blue-500">Login</a>
+      </p>
     </form>
   )
 }

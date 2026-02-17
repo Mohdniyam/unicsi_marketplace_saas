@@ -43,9 +43,9 @@ const Partners = () => {
       {/* Logo Grid */}
       <div className="space-y-4 md:space-y-6">
         {/* Top Row */}
-        <div className="partner">
+        <div className="partner-">
           <div className="horizontal-scrolling-items__item">
-            <div className="flex items-center gap-8 md:gap-12 flex-wrap horizontal-scrolling-items">
+            <div className="flex items-center gap-8 md:gap-12 horizontal-scrolling-items">
               {[...topRowLogos, ...topRowLogos].map((company, index) => (
                 <div key={index} className="flex items-center justify-center min-w-[60px] md:min-w-[80px]">
                   <Image

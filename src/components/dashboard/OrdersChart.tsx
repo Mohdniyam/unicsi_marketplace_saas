@@ -3,13 +3,13 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 const chartData = [
-  { date: 'Jan 1', orders: 100, confirmed: 80, shipped: 60 },
-  { date: 'Jan 2', orders: 120, confirmed: 95, shipped: 70 },
-  { date: 'Jan 3', orders: 110, confirmed: 88, shipped: 75 },
-  { date: 'Jan 4', orders: 140, confirmed: 110, shipped: 85 },
-  { date: 'Jan 5', orders: 130, confirmed: 105, shipped: 90 },
-  { date: 'Jan 6', orders: 150, confirmed: 120, shipped: 100 },
-  { date: 'Jan 7', orders: 160, confirmed: 130, shipped: 110 },
+  { date: 'Jan 1', orders: 0, confirmed: 0, shipped: 0 },
+  { date: 'Jan 2', orders: 0, confirmed: 0, shipped: 0 },
+  { date: 'Jan 3', orders: 0, confirmed: 0, shipped: 0 },
+  { date: 'Jan 4', orders: 0, confirmed: 0, shipped: 0 },
+  { date: 'Jan 5', orders: 0, confirmed: 0, shipped: 0 },
+  { date: 'Jan 6', orders: 0, confirmed: 0, shipped: 0 },
+  { date: 'Jan 7', orders: 0, confirmed: 0, shipped: 0 },
 ]
 
 export function OrdersChart() {

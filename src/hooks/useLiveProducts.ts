@@ -7,7 +7,7 @@ export interface LiveProduct {
   product_id: string
   supplier_id: string
   supplier_name: string
-  name: string
+  title: string
   description: string
   category: string
   brand: string
@@ -30,7 +30,7 @@ export interface LiveProductsStats {
   new_this_week: number
 }
 
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 export function useLiveProducts(page = 1, limit = 20) {
   const [products, setProducts] = useState<LiveProduct[]>([])
@@ -47,7 +47,7 @@ export function useLiveProducts(page = 1, limit = 20) {
 
         // Fetch live products
         const productsResponse = await fetch(
-          `${API_BASE_URL}/api/v1/admin/products/live?page=${page}&limit=${limit}`,
+          `${API_BASE_URL}admin/products/get-live-products`,
         )
 
         if (!productsResponse.ok) {
@@ -55,11 +55,12 @@ export function useLiveProducts(page = 1, limit = 20) {
         }
 
         const productsData = await productsResponse.json()
-        setProducts(productsData.data || [])
-        setTotal(productsData.total || 0)
+        console.log(productsData?.data)
+        setProducts(productsData?.data || [])
+        setTotal(productsData?.data?.length || 0)
 
         // Fetch stats
-        const statsResponse = await fetch(`${API_BASE_URL}/api/v1/admin/products/live/stats`)
+        const statsResponse = await fetch(`${API_BASE_URL}admin/products/live/stats`)
         if (statsResponse.ok) {
           const statsData = await statsResponse.json()
           setStats(statsData.data)
@@ -78,7 +79,7 @@ export function useLiveProducts(page = 1, limit = 20) {
 
   const deleteProduct = useCallback(async (productId: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/admin/products/${productId}`, {
+      const response = await fetch(`${API_BASE_URL}admin/products/${productId}`, {
         method: 'DELETE',
       })
 
@@ -96,7 +97,7 @@ export function useLiveProducts(page = 1, limit = 20) {
   const updateProductStatus = useCallback(
     async (productId: string, status: 'live' | 'out_of_stock') => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/v1/admin/products/${productId}/status`, {
+        const response = await fetch(`${API_BASE_URL}admin/products/${productId}/status`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -24,22 +26,19 @@ export default function LoginPage() {
 
       const data = await res.json()
 
+
       if (!res.ok) throw new Error(data.message)
 
-      // 🚀 Redirect based on role
+      // 🚀 Redirect based on role (NO cookie handling here)
       if (data.data.role === 'ADMIN') {
-        window.location.href = "https://admin.unicsi.com/admin/dashboard"
+        router.replace('/admin/dashboard')
+      } else if (data.data.role === 'RESELLER') {
+        router.replace('/partner/link-shopify')
+      } else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
+        router.replace('/kam/dashboard')
+      } else {
+        router.replace('/')
       }
-      else if (data.data.role === 'PARTNER') {
-        window.location.href = "https://partner.unicsi.com/partner/dashboard"
-      }
-      else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
-        window.location.href = "https://kam.unicsi.com/kam/dashboard"
-      }
-      else {
-        window.location.href = "https://unicsi.com"
-      }
-
     } catch (err: any) {
       alert(err.message || 'Login failed')
     } finally {
@@ -75,10 +74,15 @@ export default function LoginPage() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full my-button text-white p-2"
+        className="w-full bg-black text-white p-2 my-button"
       >
         {loading ? 'Logging in...' : 'Login'}
       </button>
+
+      {/* register link */}
+      <p className="text-center">
+        Don't have an account? <a href="/auth/register" className="text-blue-500">Register</a>
+      </p>
     </form>
   )
 }

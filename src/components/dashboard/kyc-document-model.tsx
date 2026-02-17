@@ -79,21 +79,33 @@ export function KYCDocumentModal({
         <div className="space-y-6">
           {/* Supplier Info */}
           <div className="grid grid-cols-2 gap-4 p-4 bg-muted rounded-lg">
-            <div>
+
+            {/* Email */}
+            <div className="min-w-0">
               <p className="text-sm text-muted-foreground">Email</p>
-              <p className="font-medium">{document.email}</p>
+              <p className="font-medium break-words">
+                {document.email}
+              </p>
             </div>
-            <div>
+
+            {/* Phone */}
+            <div className="min-w-0 text-right">
               <p className="text-sm text-muted-foreground">Phone</p>
-              <p className="font-medium">{document.phone}</p>
+              <p className="font-medium break-words">
+                {document.phone}
+              </p>
             </div>
+
+            {/* Status */}
             <div className="col-span-2">
               <p className="text-sm text-muted-foreground">Account Status</p>
               <Badge variant="outline" className="mt-1">
-                {document.accountStatus.charAt(0).toUpperCase() + document.accountStatus.slice(1)}
+                {document.accountStatus.charAt(0).toUpperCase() +
+                  document.accountStatus.slice(1)}
               </Badge>
             </div>
           </div>
+
 
           {/* GST Details */}
           {document.gstDetails ? (

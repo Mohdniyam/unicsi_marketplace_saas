@@ -56,7 +56,7 @@ export const useLogout = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: () => apiClient.post("/auth/logout", {}),
+    mutationFn: () => apiClient.post("auth/logout", {}),
     onSuccess: () => {
       queryClient.clear() // Clear all cached data
       router.push("/auth/login")
@@ -68,7 +68,7 @@ export const useLogout = () => {
 export const useUser = () => {
   return useQuery({
     queryKey: ["user"],
-    queryFn: () => apiClient.get("/auth/me"),
+    queryFn: () => apiClient.get("auth/me"),
     retry: false,
     staleTime: 5 * 60 * 1000, // 5 minutes
   })

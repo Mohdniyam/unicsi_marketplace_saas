@@ -20,12 +20,14 @@ export default function LiveProductsPage() {
   const [categoryFilter, setCategoryFilter] = useState('')
   const { products, stats, loading, error } = useLiveProducts()
 
+  console.log("product-items", products)
+
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.supplier_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.sku.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesCategory = !categoryFilter || product.category === categoryFilter
+      product?.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product?.supplier_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product?.sku?.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesCategory = !categoryFilter || product?.category === categoryFilter
 
     return matchesSearch && matchesCategory
   })
@@ -151,16 +153,16 @@ export default function LiveProductsPage() {
                   {filteredProducts.map((product) => (
                     <TableRow key={product.id}>
                       <TableCell>
-                        <div className="font-medium">{product.name}</div>
+                        <div className="font-medium">{product?.title}</div>
                         <div className="text-xs text-muted-foreground">{product.brand}</div>
                       </TableCell>
-                      <TableCell className="text-sm">{product.supplier_name}</TableCell>
-                      <TableCell className="text-sm font-mono">{product.sku}</TableCell>
-                      <TableCell className="text-sm">{product.category}</TableCell>
-                      <TableCell className="text-right font-medium">₹{product.price}</TableCell>
+                      <TableCell className="text-sm">{product?.supplier?.name}</TableCell>
+                      <TableCell className="text-sm font-mono">{product?.variants?.[0]?.sku}</TableCell>
+                      <TableCell className="text-sm">{product?.variants?.[0]?.category}</TableCell>
+                      <TableCell className="text-right font-medium">₹{product?.variants?.[0]?.variant_price}</TableCell>
                       <TableCell className="text-right">
-                        {product.stock > 0 ? (
-                          <Badge variant="outline">{product.stock}</Badge>
+                        {product?.variants?.[0]?.variant_stock > 0 ? (
+                          <Badge variant="outline">{product?.variants?.[0]?.variant_stock}</Badge>
                         ) : (
                           <Badge variant="secondary">Out of Stock</Badge>
                         )}
@@ -175,7 +177,7 @@ export default function LiveProductsPage() {
                       </TableCell>
                       <TableCell>
                         <Badge variant="default">
-                          {product.status === 'live' ? 'Live' : 'Out of Stock'}
+                          {product.approval_status === 'approved' ? 'Live' : 'Out of Stock'}
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right">

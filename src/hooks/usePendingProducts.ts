@@ -61,7 +61,7 @@ export interface PendingProductsStats {
   avg_review_time: number
 }
 
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 export function usePendingProducts() {
   const [products, setProducts] = useState<PendingProduct[]>([])
@@ -73,14 +73,15 @@ export function usePendingProducts() {
       try {
         setLoading(true)
         setError(null)
-        const response = await fetch(`${API_BASE_URL}/api/v1/admin/get-pending-products`)
+        const response = await fetch(`${API_BASE_URL}admin/products/get-pending-products`)
 
         if (!response.ok) {
           throw new Error(`Failed to fetch pending products: ${response.statusText}`)
         }
 
         const data = await response.json()
-        setProducts(data.data.products || [])
+        console.log(data?.data)
+        setProducts(data?.data || [])
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to fetch pending products'
         setError(errorMessage)
@@ -173,7 +174,7 @@ export function usePendingProducts() {
 
   const rejectProduct = useCallback(async (productId: string, reason: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/admin/reject-product`, {
+      const response = await fetch(`${API_BASE_URL}admin/products/reject-product`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -205,7 +206,7 @@ export function usePendingProducts() {
 
   const updateProduct = useCallback(async (productId: string, updates: Partial<PendingProduct>) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1/admin/update-product`, {
+      const response = await fetch(`${API_BASE_URL}admin/products/update-product`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

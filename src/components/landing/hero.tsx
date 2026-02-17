@@ -51,11 +51,11 @@ const Hero = () => {
             >
                 {/* Background Image */}
                 <div
-                    className="absolute insert-1 bg-cover bg-no-repeat"
+                    className="absolute inset-1 bg-cover bg-no-repeat bg-opacity-100"
                 />
 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-[url('https://unicsi-media-storage.s3.ap-south-1.amazonaws.com/images/banner.png')] bg-opacity-40 rounded-2xl bg-cover bg-no-repeat"></div>
+                <div className="absolute inset-0 bg-[url('https://unicsi-media-storage.s3.ap-south-1.amazonaws.com/images/banner.png')] rounded-2xl bg-cover bg-no-repeat"></div>
 
                 {/* Navigation */}
                 <nav className="relative z-50 px-4 sm:px-6 md:px-8 py-4 sm:py-6 flex justify-between items-center">
@@ -85,7 +85,7 @@ const Hero = () => {
                     </button>
 
                     <div className="flex items-center gap-2 sm:gap-4 ml-auto">
-                        <button className="text-white hover:text-blue-300 transition-colors font-medium text-xs sm:text-sm md:text-base whitespace-nowrap" onClick={() => router.push("/auth/login")}>
+                        <button className="text-white hover:text-blue-300  font-bold text-xs sm:text-sm md:text-base whitespace-nowrap" onClick={() => router.push("/auth/login")}>
                             Login
                         </button>
                         <button
@@ -170,7 +170,7 @@ const Hero = () => {
                 {/* Search Bar */}
                 <div className="relative z-40 px-4 sm:px-6 md:px-8 pb-6 sm:pb-8 md:pb-12 flex justify-center">
                     <div className="w-full max-w-2xl md:max-w-5xl bg-white/50 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 flex flex-row sm:flex-row items-center gap-3 sm:gap-4 shadow-2xl border border-white/30">
-                        <SearchIcon className="ml-2 sm:ml-3 mr-2 sm:mr-4 flex-shrink-0" size={18} />
+                        <SearchIcon className="ml-2 sm:ml-3 mr-2 sm:mr-4 flex-shrink-0 text-white" size={18} />
                         <input
                             type="text"
                             placeholder="Find the product you're looking for"

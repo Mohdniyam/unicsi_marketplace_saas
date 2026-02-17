@@ -1,11 +1,14 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1/'
 
+
+
 export const apiClient = {
   get: async (endpoint: string) => {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       credentials: 'include', // Important for cookies
       headers: {
         'Content-Type': 'application/json',
+
       },
     })
     

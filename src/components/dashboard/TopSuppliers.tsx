@@ -54,7 +54,7 @@ export function TopSuppliers() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {topSuppliers.map((supplier) => (
+          {/* {topSuppliers.map((supplier) => (
             <div key={supplier.id} className="flex items-center justify-between p-3 my-button rounded-lg hover:my-button transition-colors">
               <div className="flex items-center gap-3 flex-1">
                 <Avatar className="h-10 w-10">
@@ -78,7 +78,7 @@ export function TopSuppliers() {
                 <p className="text-xs text-muted-foreground">RTO: {supplier.rto}</p>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </CardContent>
     </Card>

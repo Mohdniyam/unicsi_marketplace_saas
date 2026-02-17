@@ -5,19 +5,19 @@ const alerts = [
   {
     icon: TrendingUp,
     title: 'High RTO Alert',
-    description: 'Supplier "Tech Solutions" RTO increased to 6.2%',
+    description: 'Supplier "Tech Solutions" RTO increased to 0%',
     severity: 'warning',
   },
   {
     icon: Clock,
     title: 'Pending Approvals',
-    description: '234 products awaiting approval',
+    description: '0 products awaiting approval',
     severity: 'info',
   },
   {
     icon: Zap,
     title: 'Fraud Signal',
-    description: '3 suspicious transactions detected',
+    description: '0 suspicious transactions detected',
     severity: 'danger',
   },
 ]

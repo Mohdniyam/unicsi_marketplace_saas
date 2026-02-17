@@ -13,7 +13,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useUser, useLogout } from '@/hooks/useAuth'
 
-export function AdminHeader() {
+export function PartnerHeader() {
   const { data: user } = useUser()
   const { mutate: logout } = useLogout()
 
