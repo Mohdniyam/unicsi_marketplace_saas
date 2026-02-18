@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
-import { useShopify } from '@/hooks/useShopify'
+import { apiClient } from '@/lib/api-client'
 
 export default function ConnectPage() {
   const router = useRouter()
@@ -17,6 +17,8 @@ export default function ConnectPage() {
   const handleConnect = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+
+    console.log("storeUrl ==>", storeUrl);
 
     // Validate store URL format
     if (!storeUrl.trim()) {
@@ -56,17 +58,22 @@ export default function ConnectPage() {
       //   body: JSON.stringify({ storeUrl: normalizedUrl }),
       // })
 
-      const response = useShopify(normalizedUrl)
+    
+     console.log("normalizedUrl ==>", normalizedUrl);
+      // const response = useShopify(normalizedUrl);
+      const response = await apiClient.get(`dropshipper/shopify/connect?shop=${normalizedUrl}`)
 
-      if (!response.data) {
+      console.log("response ==>shopify",  response);
+
+      if (!response.installUrl) {
         throw new Error('Failed to initiate OAuth flow')
       }
 
-      const data = response.data
+      const data = response.installUrl
       
       // Redirect to Shopify OAuth
-      if (data.authUrl) {
-        window.location.href = data.authUrl
+      if (data) {
+        window.location.href = data
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred. Please try again.')
@@ -79,7 +86,7 @@ export default function ConnectPage() {
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-12 text-center">
-          <Button onClick={() => router.back()} className="inline-flex items-center gap-2 mb-6 text-white hover:text-white/80 transition-colors">
+          <Button onClick={() => router.back()} className="inline-flex items-center gap-2 mb-6 text-white hover:text-white/80 my-button">
             <span>←</span>
             <span>Back</span>
           </Button>
@@ -120,7 +127,7 @@ export default function ConnectPage() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-11 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground"
+                className="w-full h-11 text-base font-semibold bg-primary hover:bg-primary/90 my-button"
               >
                 {isLoading ? (
                   <span className="flex items-center gap-2">
