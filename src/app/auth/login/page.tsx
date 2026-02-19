@@ -9,6 +9,43 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
+  // const handleLogin = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   setLoading(true)
+
+  //   try {
+  //     const res = await fetch(
+  //       `${process.env.NEXT_PUBLIC_API_URL}auth/login`,
+  //       {
+  //         method: 'POST',
+  //         credentials: 'include', // 🔥 REQUIRED
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({ email, password }),
+  //       }
+  //     )
+
+  //     const data = await res.json()
+
+
+  //     if (!res.ok) throw new Error(data.message)
+
+  //     // 🚀 Redirect based on role (NO cookie handling here)
+  //     if (data.data.role === 'ADMIN') {
+  //       router.replace('/admin/dashboard')
+  //     } else if (data.data.role === 'RESELLER') {
+  //       router.replace('/partner/link-shopify')
+  //     } else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
+  //       router.replace('/kam/dashboard')
+  //     } else {
+  //       router.replace('/')
+  //     }
+  //   } catch (err: any) {
+  //     alert(err.message || 'Login failed')
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -26,19 +63,22 @@ export default function LoginPage() {
 
       const data = await res.json()
 
-
       if (!res.ok) throw new Error(data.message)
 
-      // 🚀 Redirect based on role (NO cookie handling here)
+      // 🚀 Redirect based on role
       if (data.data.role === 'ADMIN') {
-        router.replace('/admin/dashboard')
-      } else if (data.data.role === 'RESELLER') {
-        router.replace('/partner/link-shopify')
-      } else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
-        router.replace('/kam/dashboard')
-      } else {
-        router.replace('/')
+        window.location.href = "https://admin.unicsi.com/admin/dashboard"
       }
+      else if (data.data.role === 'PARTNER') {
+        window.location.href = "https://partner.unicsi.com/partner/dashboard"
+      }
+      else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
+        window.location.href = "https://kam.unicsi.com/kam/dashboard"
+      }
+      else {
+        window.location.href = "https://unicsi.com"
+      }
+
     } catch (err: any) {
       alert(err.message || 'Login failed')
     } finally {
@@ -46,6 +86,7 @@ export default function LoginPage() {
     }
   }
 
+  
   return (
     <form
       onSubmit={handleLogin}
