@@ -22,7 +22,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // partner.unicsi.com → /partner
-  if (hostname.startsWith("partner.")) {
+  if (hostname.startsWith("app.")) {
     url.pathname = `/partner${pathname}`
   }
 

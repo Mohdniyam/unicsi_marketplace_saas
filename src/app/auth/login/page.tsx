@@ -70,7 +70,7 @@ export default function LoginPage() {
         window.location.href = "https://admin.unicsi.com/admin/dashboard"
       }
       else if (data.data.role === 'RESELLER') {
-        window.location.href = "https://partner.unicsi.com/partner/link-shopify"
+        window.location.href = "https://app.unicsi.com/app/link-shopify"
       }
       else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
         window.location.href = "https://kam.unicsi.com/kam/dashboard"
