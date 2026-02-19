@@ -25,9 +25,9 @@ export default function LiveProductsPage() {
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
       product?.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product?.supplier_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product?.sku?.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesCategory = !categoryFilter || product?.category === categoryFilter
+      product?.supplier?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product?.variants?.[0]?.sku?.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesCategory = !categoryFilter || product?.variants?.[0]?.category === categoryFilter
 
     return matchesSearch && matchesCategory
   })

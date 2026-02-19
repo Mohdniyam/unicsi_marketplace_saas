@@ -6,7 +6,9 @@ export interface LiveProduct {
   id: string
   product_id: string
   supplier_id: string
-  supplier_name: string
+  supplier: {
+    name: string
+  }
   title: string
   description: string
   category: string
@@ -21,6 +23,16 @@ export interface LiveProduct {
   created_at: string
   updated_at: string
   gmv?: number
+  variants: {
+    id: string
+    product_id: string
+    sku: string
+    category: string
+    variant_price: number
+    variant_stock: number
+    variant_images: string[]
+  }[]
+  approval_status: string
 }
 
 export interface LiveProductsStats {
