@@ -50,8 +50,8 @@ export async function middleware(req: NextRequest) {
       if (role === "ADMIN")
         return NextResponse.redirect(new URL("/admin/dashboard", req.url))
 
-      if (role === "PARTNER")
-        return NextResponse.redirect(new URL("/partner/dashboard", req.url))
+      if (role === "RESELLER")
+        return NextResponse.redirect(new URL("/partner/link-shopify", req.url))
 
       if (role === "KEY_ACCOUNT_MANAGER")
         return NextResponse.redirect(new URL("/kam/dashboard", req.url))
@@ -72,8 +72,8 @@ export async function middleware(req: NextRequest) {
       if (role === "ADMIN")
         return NextResponse.redirect(new URL("/admin/dashboard", req.url))
 
-      if (role === "PARTNER")
-        return NextResponse.redirect(new URL("/partner/dashboard", req.url))
+      if (role === "RESELLER")
+        return NextResponse.redirect(new URL("/partner/link-shopify", req.url))
 
       if (role === "KEY_ACCOUNT_MANAGER")
         return NextResponse.redirect(new URL("/kam/dashboard", req.url))
@@ -101,7 +101,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL("/auth/login", req.url))
       }
 
-      if (pathname.startsWith("/partner") && role !== "PARTNER") {
+      if (pathname.startsWith("/partner") && role !== "RESELLER") {
         return NextResponse.redirect(new URL("/auth/login", req.url))
       }
 

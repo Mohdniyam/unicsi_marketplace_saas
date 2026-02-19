@@ -69,8 +69,8 @@ export default function LoginPage() {
       if (data.data.role === 'ADMIN') {
         window.location.href = "https://admin.unicsi.com/admin/dashboard"
       }
-      else if (data.data.role === 'PARTNER') {
-        window.location.href = "https://partner.unicsi.com/partner/dashboard"
+      else if (data.data.role === 'RESELLER') {
+        window.location.href = "https://partner.unicsi.com/partner/link-shopify"
       }
       else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
         window.location.href = "https://kam.unicsi.com/kam/dashboard"
