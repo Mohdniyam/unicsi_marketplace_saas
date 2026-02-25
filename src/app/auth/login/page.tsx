@@ -70,7 +70,7 @@ export default function LoginPage() {
         window.location.href = process.env.NEXT_ENV === "PRODUCTION" ? "https://admin.unicsi.com/admin/dashboard" : "/admin/dashboard"
       }
       else if (data.data.role === 'RESELLER') {
-        window.location.href = process.env.NEXT_ENV === "PRODUCTION" ? "https://app.unicsi.com/partner/link-shopify" : "/partner/link-shopify"
+        window.location.href = process.env.NEXT_ENV === "PRODUCTION" ? "https://app.unicsi.com/partner/link-shopify" : "/marketplace"
       }
       else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
         window.location.href = process.env.NEXT_ENV === "PRODUCTION" ? "https://kam.unicsi.com/kam/dashboard" : "/kam/dashboard"

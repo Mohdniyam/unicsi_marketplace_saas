@@ -24,18 +24,18 @@ import {
 import { cn } from '@/lib/utils'
 
 const menuItems = [
-  {icon:Home,label:"Analytics",href:"/partner/dashboard/analytics/overview"},
-  {icon: Home,label:"Home",href:"/partner/home"},
+  { icon: BarChart3, label: "Analytics", href: "/marketplace/dashboard/analytics/overview" },
+  { icon: Home, label: "Home", href: "/marketplace" },
   {
     icon: Users,
     label: 'Manage Orders',
-    href: '/partner/marketplace/orders',
+    href: '/marketplace/order/manage',
 
   },
   {
     icon: Package,
     label: 'Manage Ndr',
-    href: '/partner/marketplace/ndr',
+    href: '/marketplace/ndr',
 
   },
   {
@@ -101,9 +101,11 @@ const menuItems = [
     href: '/marketplace/gst-invoices',
 
   },
-  { icon: BarChart3, label: 'Value Added Services', href: '/marketplace/value-added-services' },
-  { icon: HelpCircle, label: 'Clout Training', href: '/marketplace/clout-training' },
-  { icon: HelpCircle, label: 'Clout Feedback', href: '/marketplace/clout-feedback' },
+  { icon: HelpCircle, label: 'Support', href: '/marketplace/support' },
+  { icon: HelpCircle, label: "FAQs", href: "/marketplace/faqs"}
+  // { icon: BarChart3, label: 'Value Added Services', href: '/marketplace/value-added-services' },
+  // { icon: HelpCircle, label: 'Clout Training', href: '/marketplace/clout-training' },
+  // { icon: HelpCircle, label: 'Clout Feedback', href: '/marketplace/clout-feedback' },
 ]
 
 interface MenuItem {
@@ -111,6 +113,7 @@ interface MenuItem {
   label: string
   href: string
   children?: Array<{ label: string; href: string }>
+  
 }
 
 export function PartnerSidebar() {
@@ -152,7 +155,7 @@ export function PartnerSidebar() {
       {/* Menu Items */}
       <nav className="flex-1 overflow-y-auto px-3 py-4">
         <ul className="space-y-2">
-          {menuItems.map((item: MenuItem) => {
+          {menuItems.map((item : MenuItem) => {
             const Icon = item.icon
             const hasChildren = item.children && item.children.length > 0
             const isExpanded = expandedItems.has(item.label)
