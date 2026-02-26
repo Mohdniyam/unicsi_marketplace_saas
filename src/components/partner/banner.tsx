@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const images = [
-  "https://images.unsplash.com/photo-1607083206968-13611e3d76db",
-  "https://images.unsplash.com/photo-1586201375761-83865001e31c",
-];
+const images = ["/images/clout-banner-1.webp", "/images/clout-banner-2.webp"];
 
 export default function HomeBanner() {
   const [current, setCurrent] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    }, 1000);
+    }, 8000);
 
-    return () => clearInterval(interval);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -30,7 +32,6 @@ export default function HomeBanner() {
           />
         ))}
 
-        {/* Dots */}
         <div className="absolute bottom-4 w-full flex justify-center gap-2">
           {images.map((_, index) => (
             <div
