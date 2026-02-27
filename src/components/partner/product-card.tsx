@@ -26,11 +26,11 @@ export default function ProductCard({
   onPushToShopify,
 }: ProductCardProps) {
   return (
-    <div className="flex flex-col h-full bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-200">
+    <div className="flex flex-col h-full bg-white rounded-lg shadow-sm p-2 hover:shadow-md transition-shadow duration-200">
       <div className="flex-1">
         {" "}
         {/* Image Container */}
-        <div className="relative w-full h-40 mb-3 bg-slate-50 rounded overflow-hidden">
+        <div className="relative w-full h-36 mb-3 bg-slate-100 rounded-md overflow-hidden">
           {/* <Image src={image} alt={name} fill className="object-cover hover:scale-105 transition-transform duration-200" /> */}
         </div>
         {/* Product Info */}
@@ -84,22 +84,20 @@ export default function ProductCard({
         </div>
       </div>
       {/* Buttons */}
-      <div className="flex gap-3 space-y-2 mt-4">
-        {/* Push to Shopify Button */}
+      <div className="flex gap-1 py-2">
         <Button
           onClick={onPushToShopify}
-          className="w-full text-white bg-amber-500 hover:bg-amber-600 font-semibold py-2 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          className="flex-1 text-white text-xs bg-amber-500 hover:bg-amber-600 font-semibold py-2 rounded-lg flex items-center justify-center cursor-pointer"
         >
           Push to Shopify
         </Button>
 
-        {/* Bulk order Button */}
-        {/* <Button
+        <Button
           onClick={onPushToShopify}
-          className="w-full bg-white text-amber-900 border border-amber-900 hover:bg-amber-900/10 font-semibold py-2 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          className="flex-1 bg-white text-xs text-amber-900 border border-amber-900 hover:bg-amber-900/10 font-semibold py-2 rounded-lg flex items-center justify-center cursor-pointer"
         >
           Bulk Order
-        </Button> */}
+        </Button>
       </div>
     </div>
   );
