@@ -1,0 +1,345 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f8fafb;
+  --foreground: #0f1419;
+  --card: #ffffff;
+  --card-foreground: #0f1419;
+  --popover: #ffffff;
+  --popover-foreground: #0f1419;
+  --primary: #0097b2;
+  --primary-foreground: #ffffff;
+  --secondary: #e0f2f7;
+  --secondary-foreground: #0097b2;
+  --muted: #d4e8ed;
+  --muted-foreground: #667085;
+  --accent: #7ed957;
+  --accent-foreground: #0f1419;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #f3f4f6;
+  --ring: #0097b2;
+  --chart-1: #0097b2;
+  --chart-2: #7ed957;
+  --chart-3: #06b6d4;
+  --chart-4: #65a30d;
+  --chart-5: #0891b2;
+  --radius: 0.625rem;
+  --sidebar: #f0f5f7;
+  --sidebar-foreground: #0f1419;
+  --sidebar-primary: #0097b2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #7ed957;
+  --sidebar-accent-foreground: #0f1419;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #0097b2;
+}
+
+.dark {
+  --background: #0f1419;
+  --foreground: #f3f4f6;
+  --card: #1a202c;
+  --card-foreground: #f3f4f6;
+  --popover: #1a202c;
+  --popover-foreground: #f3f4f6;
+  --primary: #06d9f3;
+  --primary-foreground: #0f1419;
+  --secondary: #0d3c47;
+  --secondary-foreground: #06d9f3;
+  --muted: #2d3748;
+  --muted-foreground: #9ca3af;
+  --accent: #a6e34d;
+  --accent-foreground: #0f1419;
+  --destructive: #f87171;
+  --destructive-foreground: #0f1419;
+  --border: #2d3748;
+  --input: #1a202c;
+  --ring: #06d9f3;
+  --chart-1: #06d9f3;
+  --chart-2: #a6e34d;
+  --chart-3: #22d3ee;
+  --chart-4: #bef264;
+  --chart-5: #06b6d4;
+  --sidebar: #111827;
+  --sidebar-foreground: #f3f4f6;
+  --sidebar-primary: #06d9f3;
+  --sidebar-primary-foreground: #0f1419;
+  --sidebar-accent: #a6e34d;
+  --sidebar-accent-foreground: #0f1419;
+  --sidebar-border: #2d3748;
+  --sidebar-ring: #06d9f3;
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    font-family: var(--font-montserrat);
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+/* ── Hero Nav Links ── */
+.hero-nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 6px 14px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.hero-nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 2px solid #0097b2;
+  border-bottom: 2px solid #7ed957;
+  transform: scaleY(2);
+  opacity: 0;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 4px;
+}
+
+.hero-nav-link::after {
+  content: "";
+  position: absolute;
+  inset: 2px 0;
+  background: radial-gradient(circle at 0% 0%, #0097b2, #7ed957);
+  transform: scaleY(0);
+  opacity: 0;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+  border-radius: 3px;
+}
+
+.hero-nav-link:hover {
+  color: #fff;
+}
+
+.hero-nav-link:hover::before,
+.hero-nav-link:hover::after {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* ── Hero Login Link ── */
+.hero-login-link {
+  position: relative;
+  display: inline-block;
+  padding: 6px 14px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.hero-login-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 2px solid #0097b2;
+  border-bottom: 2px solid #7ed957;
+  transform: scaleY(2);
+  opacity: 0;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 4px;
+}
+
+.hero-login-link::after {
+  content: "";
+  position: absolute;
+  inset: 2px 0;
+  background: radial-gradient(circle at 0% 0%, #0097b2, #7ed957);
+  transform: scaleY(0);
+  opacity: 0;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+  border-radius: 3px;
+}
+
+.hero-login-link:hover {
+  color: #fff;
+}
+
+.hero-login-link:hover::before,
+.hero-login-link:hover::after {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.my-button {
+  background: radial-gradient(circle at 0% 0%, #0097b2, #7ed957);
+
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.my-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 100%, #0097b2, #7ed957);
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.my-button:hover::before {
+  opacity: 1;
+}
+
+.my-button:hover {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 20px rgba(0, 151, 178, 0.5),
+    0 0 40px rgba(126, 217, 87, 0.25),
+    0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.my-button:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+.my-button > * {
+  position: relative;
+  z-index: 1;
+}
+
+.my-button > span,
+.my-button {
+  position: relative;
+  z-index: 1;
+}
+
+.testing {
+  height: 100%;
+  overflow-y: hidden; /* prevent vertical body scrolling */
+}
+
+/* Hide scrollbar but keep scrolling */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+@keyframes infiniteScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.partner {
+  width: 100%;
+  overflow-x: hidden;
+}
+.horizontal-scrolling-items {
+  width: 2600px;
+  animation-name: infiniteScroll;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.horizontal-scrolling-items__item {
+  white-space: nowrap;
+}
+
+/* Opposite direction classes */
+.partner-reverse {
+  width: 100%;
+  overflow-x: hidden;
+}
+.horizontal-scrolling-items-reverse {
+  width: 2600px;
+  animation-name: infiniteScrollReverse;
+  animation-duration: 20s; /* Faster speed */
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.horizontal-scrolling-items-reverse__item {
+  white-space: nowrap;
+}
+
+@keyframes infiniteScrollReverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
