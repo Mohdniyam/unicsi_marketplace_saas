@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ProductCard from "./product-card";
 import CartDrawer from "./cart-drawer";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const PRODUCT_TABS = [
   "Push to Shopify",
@@ -41,26 +42,56 @@ const SAMPLE_PRODUCTS = [
     image:
       "https://images.unsplash.com/photo-1543163521-9733539c2d7f?w=400&h=400&fit=crop",
   },
-  {
-    id: "5",
-    name: "Sport Performance Shoes",
-    price: 4999,
-    image:
-      "https://images.unsplash.com/photo-1538619666990-a4c074d65e1b?w=400&h=400&fit=crop",
-  },
 ];
 
-export default function ProductsSection() {
+type ProductsBlockProps = {
+  title: string;
+  bgColor?: string;
+  showTabs?: boolean;
+};
+
+function ProductsBlock({
+  title,
+  bgColor = "bg-white",
+  showTabs,
+}: ProductsBlockProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -300 : 300,
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4">
-      <div className="bg-white rounded-2xl border border-slate-200 p-8 mb-8">
-        {/* Header */}
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">All Products</h2>
+    <div className={`${bgColor} rounded-2xl border border-slate-200 p-8 mb-8`}>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-slate-900">{title}</h2>
 
-        {/* Tabs */}
+        <div className="flex gap-2">
+          <button
+            onClick={() => handleScroll("left")}
+            className="p-2 hover:bg-slate-100 rounded-full"
+          >
+            <ChevronLeft className="w-5 h-5 text-slate-600" />
+          </button>
+          <button
+            onClick={() => handleScroll("right")}
+            className="p-2 hover:bg-slate-100 rounded-full"
+          >
+            <ChevronRight className="w-5 h-5 text-slate-600" />
+          </button>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      {showTabs && (
         <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
           {PRODUCT_TABS.map((tab, index) => (
             <button
@@ -76,25 +107,32 @@ export default function ProductsSection() {
             </button>
           ))}
         </div>
+      )}
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {SAMPLE_PRODUCTS.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              price={product.price}
-              image={product.image}
-              onPushToShopify={() => {
-                console.log("Clicked PushToShopify");
-                setIsCartOpen(true);
-              }}
-            />
-          ))}
-        </div>
-        {isCartOpen && <CartDrawer onClose={() => setIsCartOpen(false)} />}
+      {/* Products */}
+      <div
+        ref={scrollRef}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      >
+        {SAMPLE_PRODUCTS.map((product) => (
+          <ProductCard
+            key={product.id}
+            {...product}
+            onPushToShopify={() => setIsCartOpen(true)}
+          />
+        ))}
       </div>
+
+      {isCartOpen && <CartDrawer onClose={() => setIsCartOpen(false)} />}
+    </div>
+  );
+}
+
+export default function ProductsSection() {
+  return (
+    <div className="w-full max-w-6xl mx-auto px-4">
+      <ProductsBlock title="All Products" showTabs />
+      <ProductsBlock title="Products for Testing" bgColor="bg-[#f1ebec]/60" />
     </div>
   );
 }
