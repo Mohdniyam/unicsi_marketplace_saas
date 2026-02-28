@@ -12,36 +12,44 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}auth/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}auth/login`,
+        {
+          method: 'POST',
+          credentials: 'include', // 🔥 REQUIRED
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        }
+      )
 
-      const data = await res.json();
+      const data = await res.json()
 
-      if (!res.ok) throw new Error(data.message);
+      if (!res.ok) throw new Error(data.message)
 
-      if (data.data.role === "ADMIN") {
-        router.replace("/admin/dashboard");
-      } else if (data.data.role === "RESELLER") {
-        router.replace("/partner/link-shopify");
-      } else if (data.data.role === "KEY_ACCOUNT_MANAGER") {
-        router.replace("/kam/dashboard");
-      } else {
-        router.replace("/");
+      // 🚀 Redirect based on role
+      if (data.data.role === 'ADMIN') {
+        window.location.href = process.env.NEXT_ENV === "PRODUCTION" ? "https://admin.unicsi.com/admin/dashboard" : "/admin/dashboard"
       }
+      else if (data.data.role === 'RESELLER') {
+        window.location.href = process.env.NEXT_ENV === "PRODUCTION" ? "https://app.unicsi.com/partner/link-shopify" : "/marketplace"
+      }
+      else if (data.data.role === 'KEY_ACCOUNT_MANAGER') {
+        window.location.href = process.env.NEXT_ENV === "PRODUCTION" ? "https://kam.unicsi.com/kam/dashboard" : "/kam/dashboard"
+      }
+      else {
+        window.location.href = process.env.NEXT_ENV === "PRODUCTION" ? "https://unicsi.com" : "/"
+      }
+
     } catch (err: any) {
-      alert(err.message || "Login failed");
+      alert(err.message || 'Login failed')
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <>
