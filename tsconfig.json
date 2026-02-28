@@ -34,11 +34,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-<<<<<<< HEAD
-    "src/app/marketplace/link-shopify"
-=======
+    "src/app/marketplace/link-shopify",
     "src/app/partner/link-shopify"
->>>>>>> origin/sonali
   ],
   "exclude": [
     "node_modules"

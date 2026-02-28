@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // import { NextResponse } from "next/server"
 // import type { NextRequest } from "next/server"
 // import { jwtVerify } from "jose"
@@ -126,8 +125,6 @@
 
 
 // local middleware
-=======
->>>>>>> origin/sonali
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { jwtVerify } from "jose"
@@ -158,11 +155,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL("/admin/dashboard", req.url))
       }
       if (role === "RESELLER") {
-<<<<<<< HEAD
         return NextResponse.redirect(new URL("/marketplace/link-shopify", req.url))
-=======
-        return NextResponse.redirect(new URL("/partner/link-shopify", req.url))
->>>>>>> origin/sonali
       }
       if (role === "KEY_ACCOUNT_MANAGER") {
         return NextResponse.redirect(new URL("/kam/dashboard", req.url))
@@ -192,11 +185,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL("/admin/dashboard", req.url))
       }
       if (role === "RESELLER") {
-<<<<<<< HEAD
         return NextResponse.redirect(new URL("/marketplace", req.url))
-=======
-        return NextResponse.redirect(new URL("/partner/link-shopify", req.url))
->>>>>>> origin/sonali
       }
       if (role === "KEY_ACCOUNT_MANAGER") {
         return NextResponse.redirect(new URL("/kam/dashboard", req.url))
@@ -223,11 +212,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(new URL("/auth/login", req.url))
     }
 
-<<<<<<< HEAD
     if (pathname.startsWith("/marketplace") && userRole !== "RESELLER") {
-=======
-    if (pathname.startsWith("/partner") && userRole !== "RESELLER") {
->>>>>>> origin/sonali
       return NextResponse.redirect(new URL("/auth/login", req.url))
     }
 
@@ -245,11 +230,7 @@ export const config = {
   matcher: [
     "/",
     "/admin/:path*",
-<<<<<<< HEAD
     "/marketplace/:path*",
-=======
-    "/partner/:path*",
->>>>>>> origin/sonali
     "/kam/:path*",
     "/auth/:path*" // 🔥 THIS WAS MISSING
   ],

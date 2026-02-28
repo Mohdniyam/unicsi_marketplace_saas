@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-@import 'tailwindcss';
-@import 'tw-animate-css';
-=======
 @import "tailwindcss";
 @import "tw-animate-css";
->>>>>>> origin/sonali
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-<<<<<<< HEAD
   --background: #F8FAFB;
   --foreground: #0F1419;
   --card: #FFFFFF;
@@ -83,7 +77,6 @@
 @theme inline {
   --font-sans: 'Geist', 'Geist Fallback';
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
-=======
   --background: #f8fafb;
   --foreground: #0f1419;
   --card: #ffffff;
@@ -157,7 +150,6 @@
 @theme inline {
   --font-sans: "Geist", "Geist Fallback";
   --font-mono: "Geist Mono", "Geist Mono Fallback";
->>>>>>> origin/sonali
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -204,16 +196,14 @@
   body {
     font-family: var(--font-montserrat);
     @apply bg-background text-foreground;
-<<<<<<< HEAD
   }
 }
 
 .my-button {
   background: radial-gradient(circle at 0% 0%, #0097b2, #7ed957);
-=======
     overflow-x: hidden;
   }
-}
+
 
 /* ── Hero Nav Links ── */
 .hero-nav-link {
@@ -367,7 +357,6 @@
 .my-button {
   position: relative;
   z-index: 1;
->>>>>>> origin/sonali
 }
 
 .testing {
@@ -377,33 +366,20 @@
 
 /* Hide scrollbar but keep scrolling */
 .hide-scrollbar {
-<<<<<<< HEAD
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
-=======
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
->>>>>>> origin/sonali
 }
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 
-<<<<<<< HEAD
 
 @keyframes infiniteScroll {
   from {transform: translateX(0)}
   to {transform: translateX(-50%)}
-=======
-@keyframes infiniteScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
->>>>>>> origin/sonali
 }
 .partner {
   width: 100%;
@@ -437,12 +413,6 @@
 }
 
 @keyframes infiniteScrollReverse {
-<<<<<<< HEAD
-  from { transform: translateX(-50%) }
-  to { transform: translateX(0) }
-}
-
-=======
   from {
     transform: translateX(-50%);
   }
@@ -450,4 +420,3 @@
     transform: translateX(0);
   }
 }
->>>>>>> origin/sonali
