@@ -1,9 +1,24 @@
+<<<<<<< HEAD
 'use client'
 
 import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+=======
+"use client";
+
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+>>>>>>> origin/sonali
 import {
   Table,
   TableBody,
@@ -11,6 +26,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+<<<<<<< HEAD
 } from '@/components/ui/table'
 import { Search, Filter, Trash2, Eye } from 'lucide-react'
 import { useLiveProducts } from '@/hooks/useLiveProducts'
@@ -21,10 +37,23 @@ export default function LiveProductsPage() {
   const { products, stats, loading, error } = useLiveProducts()
 
   console.log("product-items", products)
+=======
+} from "@/components/ui/table";
+import { Search, Filter, Trash2, Eye } from "lucide-react";
+import { useLiveProducts } from "@/hooks/useLiveProducts";
+
+export default function LiveProductsPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const { products, stats, loading, error } = useLiveProducts();
+
+  console.log("product-items", products);
+>>>>>>> origin/sonali
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
       product?.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+<<<<<<< HEAD
       product?.supplier?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       product?.variants?.[0]?.sku?.toLowerCase().includes(searchQuery.toLowerCase())
     const matchesCategory = !categoryFilter || product?.variants?.[0]?.category === categoryFilter
@@ -33,13 +62,32 @@ export default function LiveProductsPage() {
   })
 
   const categories = Array.from(new Set(products.map((p) => p.category)))
+=======
+      product?.supplier_name
+        ?.toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
+      product?.sku?.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      !categoryFilter || product?.category === categoryFilter;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  const categories = Array.from(new Set(products.map((p) => p.category)));
+>>>>>>> origin/sonali
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Live Products</h1>
+<<<<<<< HEAD
           <p className="text-muted-foreground">All active products available for sale</p>
+=======
+          <p className="text-muted-foreground">
+            All active products available for sale
+          </p>
+>>>>>>> origin/sonali
         </div>
         <Badge variant="default" className="text-lg px-4 py-2">
           {stats?.total_active || 0} Live
@@ -88,7 +136,13 @@ export default function LiveProductsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
+<<<<<<< HEAD
               <p className="text-3xl font-bold text-primary">{stats?.total_active || 0}</p>
+=======
+              <p className="text-3xl font-bold text-primary">
+                {stats?.total_active || 0}
+              </p>
+>>>>>>> origin/sonali
               <p className="text-sm text-muted-foreground">Total Active</p>
             </div>
           </CardContent>
@@ -96,7 +150,13 @@ export default function LiveProductsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
+<<<<<<< HEAD
               <p className="text-3xl font-bold text-green-600">₹{stats?.total_gmv || 0}</p>
+=======
+              <p className="text-3xl font-bold text-green-600">
+                ₹{stats?.total_gmv || 0}
+              </p>
+>>>>>>> origin/sonali
               <p className="text-sm text-muted-foreground">Total GMV</p>
             </div>
           </CardContent>
@@ -104,7 +164,13 @@ export default function LiveProductsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
+<<<<<<< HEAD
               <p className="text-3xl font-bold text-blue-600">{stats?.conversion_rate || 0}%</p>
+=======
+              <p className="text-3xl font-bold text-blue-600">
+                {stats?.conversion_rate || 0}%
+              </p>
+>>>>>>> origin/sonali
               <p className="text-sm text-muted-foreground">Conversion Rate</p>
             </div>
           </CardContent>
@@ -112,7 +178,13 @@ export default function LiveProductsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
+<<<<<<< HEAD
               <p className="text-3xl font-bold text-yellow-600">{stats?.new_this_week || 0}</p>
+=======
+              <p className="text-3xl font-bold text-yellow-600">
+                {stats?.new_this_week || 0}
+              </p>
+>>>>>>> origin/sonali
               <p className="text-sm text-muted-foreground">New This Week</p>
             </div>
           </CardContent>
@@ -128,10 +200,21 @@ export default function LiveProductsPage() {
         </CardHeader>
         <CardContent>
           {loading ? (
+<<<<<<< HEAD
             <div className="text-center py-12 text-muted-foreground">Loading products...</div>
           ) : filteredProducts.length === 0 ? (
             <div className="text-center py-12 text-muted-foreground">
               {products.length === 0 ? 'No live products found' : 'No products match your filters'}
+=======
+            <div className="text-center py-12 text-muted-foreground">
+              Loading products...
+            </div>
+          ) : filteredProducts.length === 0 ? (
+            <div className="text-center py-12 text-muted-foreground">
+              {products.length === 0
+                ? "No live products found"
+                : "No products match your filters"}
+>>>>>>> origin/sonali
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -154,6 +237,7 @@ export default function LiveProductsPage() {
                     <TableRow key={product.id}>
                       <TableCell>
                         <div className="font-medium">{product?.title}</div>
+<<<<<<< HEAD
                         <div className="text-xs text-muted-foreground">{product.brand}</div>
                       </TableCell>
                       <TableCell className="text-sm">{product?.supplier?.name}</TableCell>
@@ -163,13 +247,42 @@ export default function LiveProductsPage() {
                       <TableCell className="text-right">
                         {product?.variants?.[0]?.variant_stock > 0 ? (
                           <Badge variant="outline">{product?.variants?.[0]?.variant_stock}</Badge>
+=======
+                        <div className="text-xs text-muted-foreground">
+                          {product.brand}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-sm">
+                        {product?.supplier_name}
+                      </TableCell>{" "}
+                      <TableCell className="text-sm font-mono">
+                        {product?.variants?.[0]?.sku}
+                      </TableCell>
+                      <TableCell className="text-sm">
+                        {product?.variants?.[0]?.category}
+                      </TableCell>
+                      <TableCell className="text-right font-medium">
+                        ₹{product?.variants?.[0]?.variant_price}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {product?.variants?.[0]?.variant_stock > 0 ? (
+                          <Badge variant="outline">
+                            {product?.variants?.[0]?.variant_stock}
+                          </Badge>
+>>>>>>> origin/sonali
                         ) : (
                           <Badge variant="secondary">Out of Stock</Badge>
                         )}
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-1">
+<<<<<<< HEAD
                           <span className="text-sm font-medium">{product.rating}</span>
+=======
+                          <span className="text-sm font-medium">
+                            {product.rating}
+                          </span>
+>>>>>>> origin/sonali
                           <span className="text-xs text-muted-foreground">
                             ({product.reviews_count})
                           </span>
@@ -177,7 +290,13 @@ export default function LiveProductsPage() {
                       </TableCell>
                       <TableCell>
                         <Badge variant="default">
+<<<<<<< HEAD
                           {product.approval_status === 'approved' ? 'Live' : 'Out of Stock'}
+=======
+                          {product.approval_status === "approved"
+                            ? "Live"
+                            : "Out of Stock"}
+>>>>>>> origin/sonali
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right">
@@ -190,7 +309,15 @@ export default function LiveProductsPage() {
                           >
                             <Eye className="w-4 h-4" />
                           </Button>
+<<<<<<< HEAD
                           <Button variant="ghost" size="sm" className="gap-2 text-red-600">
+=======
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="gap-2 text-red-600"
+                          >
+>>>>>>> origin/sonali
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         </div>
@@ -204,5 +331,9 @@ export default function LiveProductsPage() {
         </CardContent>
       </Card>
     </div>
+<<<<<<< HEAD
   )
+=======
+  );
+>>>>>>> origin/sonali
 }
