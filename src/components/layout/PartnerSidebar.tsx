@@ -22,6 +22,8 @@ import {
   HelpCircle,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import logo from '../../../public/images/logo.png'
+import Image from 'next/image'
 
 const menuItems = [
   {icon:Home,label:"Analytics",href:"/partner/dashboard/analytics/overview"},
@@ -140,12 +142,13 @@ export function PartnerSidebar() {
       {/* Logo Section */}
       <div className="p-6 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full my-button text-primary-foreground flex items-center justify-center">
+          {/* <div className="w-12 h-12 rounded-full my-button text-primary-foreground flex items-center justify-center">
             <span className="text-sm font-bold text-primary">U</span>
           </div>
           <div>
             <p className="font-bold text-sidebar-foreground">UNICSI</p>
-          </div>
+          </div> */}
+          <Image src={logo} alt="logo" width={100} height={100} className="object-contain w-auto h-12 md:h-20" />
         </div>
       </div>
 

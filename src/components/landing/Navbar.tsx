@@ -13,7 +13,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const navLinks = [
-    { label: "All Categories", href: "/categories" },
+    { label: "All Categories", href: "/auth/login" },
     { label: "Solutions", href: "/solutions" },
     { label: "Why UNICSI", href: "/why-unicsi" },
     { label: "Resources", href: "/blog" },
