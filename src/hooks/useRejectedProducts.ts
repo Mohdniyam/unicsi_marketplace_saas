@@ -30,11 +30,7 @@ export interface RejectionStats {
   }
 }
 
-<<<<<<< HEAD
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1/'
-=======
-const API_BASE_URL = 'http://localhost:8000'
->>>>>>> origin/sonali
 
 export function useRejectedProducts(page = 1, limit = 20) {
   const [products, setProducts] = useState<RejectedProduct[]>([])

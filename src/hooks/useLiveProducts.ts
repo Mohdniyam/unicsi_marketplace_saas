@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
@@ -51,65 +50,16 @@ export function useLiveProducts(page = 1, limit = 20) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [total, setTotal] = useState(0)
-=======
-"use client";
-
-import { useState, useEffect, useCallback } from "react";
-
-export interface LiveProduct {
-  [x: string]: any;
-  id: string;
-  product_id: string;
-  supplier_id: string;
-  supplier_name: string;
-  title: string;
-  description: string;
-  category: string;
-  brand: string;
-  sku: string;
-  price: number;
-  stock: number;
-  rating: number;
-  reviews_count: number;
-  images: string[];
-  status: "live" | "out_of_stock";
-  created_at: string;
-  updated_at: string;
-  gmv?: number;
-}
-
-export interface LiveProductsStats {
-  total_active: number;
-  total_gmv: number;
-  conversion_rate: number;
-  new_this_week: number;
-}
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
-export function useLiveProducts(page = 1, limit = 20) {
-  const [products, setProducts] = useState<LiveProduct[]>([]);
-  const [stats, setStats] = useState<LiveProductsStats | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [total, setTotal] = useState(0);
->>>>>>> origin/sonali
 
   useEffect(() => {
     const fetchLiveProducts = async () => {
       try {
-<<<<<<< HEAD
         setLoading(true)
         setError(null)
-=======
-        setLoading(true);
-        setError(null);
->>>>>>> origin/sonali
 
         // Fetch live products
         const productsResponse = await fetch(
           `${API_BASE_URL}admin/products/get-live-products`,
-<<<<<<< HEAD
         )
 
         if (!productsResponse.ok) {
@@ -169,84 +119,10 @@ export function useLiveProducts(page = 1, limit = 20) {
 
         if (!response.ok) {
           throw new Error('Failed to update product status')
-=======
-        );
-
-        if (!productsResponse.ok) {
-          throw new Error(
-            `Failed to fetch live products: ${productsResponse.statusText}`,
-          );
-        }
-
-        const productsData = await productsResponse.json();
-        console.log(productsData?.data);
-        setProducts(productsData?.data || []);
-        setTotal(productsData?.data?.length || 0);
-
-        // Fetch stats
-        const statsResponse = await fetch(
-          `${API_BASE_URL}admin/products/live/stats`,
-        );
-        if (statsResponse.ok) {
-          const statsData = await statsResponse.json();
-          setStats(statsData.data);
-        }
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "Failed to fetch live products";
-        setError(errorMessage);
-        console.error("[v0] Live products fetch error:", errorMessage);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchLiveProducts();
-  }, [page, limit]);
-
-  const deleteProduct = useCallback(async (productId: string) => {
-    try {
-      const response = await fetch(
-        `${API_BASE_URL}admin/products/${productId}`,
-        {
-          method: "DELETE",
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to delete product");
-      }
-
-      setProducts((prev) => prev.filter((p) => p.id !== productId));
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Failed to delete product";
-      console.error("[v0] Delete product error:", errorMessage);
-    }
-  }, []);
-
-  const updateProductStatus = useCallback(
-    async (productId: string, status: "live" | "out_of_stock") => {
-      try {
-        const response = await fetch(
-          `${API_BASE_URL}admin/products/${productId}/status`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ status }),
-          },
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to update product status");
->>>>>>> origin/sonali
         }
 
         setProducts((prev) =>
           prev.map((p) => (p.id === productId ? { ...p, status } : p)),
-<<<<<<< HEAD
         )
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to update product status'
@@ -255,19 +131,6 @@ export function useLiveProducts(page = 1, limit = 20) {
     },
     [],
   )
-=======
-        );
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error
-            ? err.message
-            : "Failed to update product status";
-        console.error("[v0] Update product status error:", errorMessage);
-      }
-    },
-    [],
-  );
->>>>>>> origin/sonali
 
   return {
     products,
@@ -277,9 +140,5 @@ export function useLiveProducts(page = 1, limit = 20) {
     total,
     deleteProduct,
     updateProductStatus,
-<<<<<<< HEAD
   }
-=======
-  };
->>>>>>> origin/sonali
 }
