@@ -55,17 +55,17 @@ const menuItems = [
   {
     icon: ShoppingCart,
     label: "Manage Products",
-    href: "#",
-    children: [
-      {
-        label: "Inventory Request",
-        href: "/marketplace/manage-products/inventoryRequest",
-      },
-      {
-        label: "Pushed To Shopify",
-        href: "/marketplace/manage-products/pushedToShopify",
-      },
-    ],
+    href: "/marketplace/manage-products",
+    // children: [
+    //   {
+    //     label: "Inventory Request",
+    //     href: "/marketplace/manage-products/inventoryRequest",
+    //   },
+    //   {
+    //     label: "Pushed To Shopify",
+    //     href: "/marketplace/manage-products/pushedToShopify",
+    //   },
+    // ],
     // children: [
     //   { label: 'All Orders', href: '/admin/orders' },
     //   { label: 'Processing', href: '/admin/orders/processing' },
@@ -191,8 +191,9 @@ export function PartnerSidebar() {
             const Icon = item.icon;
             const hasChildren = item.children && item.children.length > 0;
             const isExpanded = expandedItems.has(item.label);
-            const active =
-              isActive(item.href) || isAnyChildActive(item.children);
+            const childActive = isAnyChildActive(item.children);
+
+            const active = !childActive && isActive(item.href);
 
             return (
               <li key={item.label}>
