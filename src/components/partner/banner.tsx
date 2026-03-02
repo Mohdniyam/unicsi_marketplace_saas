@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const images = ["/images/clout-banner-1.webp"];
+const images = ["/images/clout-banner-1.webp", "/images/clout-banner-2.webp"];
 
 export default function HomeBanner() {
   const [current, setCurrent] = useState(0);
