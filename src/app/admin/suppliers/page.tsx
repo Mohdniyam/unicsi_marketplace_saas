@@ -22,7 +22,7 @@ import {
 
 function SuppliersTable() {
   const { data: suppliers, isLoading } = useSuppliers()
-  console.log(suppliers?.data)
+  // console.log(suppliers?.data)
 
   if (isLoading) {
     return (
