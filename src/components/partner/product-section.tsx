@@ -48,12 +48,14 @@ type ProductsBlockProps = {
   title: string;
   bgColor?: string;
   showTabs?: boolean;
+  products?: any;
 };
 
 function ProductsBlock({
   title,
   bgColor = "bg-white",
   showTabs,
+  products,
 }: ProductsBlockProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -72,7 +74,7 @@ function ProductsBlock({
     <div className={`${bgColor} rounded-2xl border border-slate-200 p-8 mb-8`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-slate-900">{title}</h2>
+        <h2 className="text-2xl font-bold text-slate-900">{products?.title}</h2>
 
         <div className="flex gap-2">
           <button
@@ -114,11 +116,12 @@ function ProductsBlock({
         ref={scrollRef}
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
       >
-        {SAMPLE_PRODUCTS.map((product) => (
+        {products?.map((product: any) => (
           <ProductCard
-            key={product.id}
+            key={product.product_id}
             {...product}
             onPushToShopify={() => setIsCartOpen(true)}
+            product={product}
           />
         ))}
       </div>
@@ -128,11 +131,11 @@ function ProductsBlock({
   );
 }
 
-export default function ProductsSection() {
+export default function ProductsSection({ products }: any) {
   return (
     <div className="w-full max-w-6xl mx-auto px-4">
-      <ProductsBlock title="All Products" showTabs />
-      <ProductsBlock title="Products for Testing" bgColor="bg-[#f1ebec]/60" />
+      <ProductsBlock title="All Products" showTabs products={products} />
+      <ProductsBlock title="Products for Testing" bgColor="bg-[#f1ebec]/60" products={products} />
     </div>
   );
 }

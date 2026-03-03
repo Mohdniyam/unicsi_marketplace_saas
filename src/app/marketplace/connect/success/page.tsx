@@ -93,7 +93,7 @@ export default function SuccessPage() {
 
             {/* Action Buttons */}
             <div className="space-y-2">
-              <Button className="w-full h-11 text-base font-semibold my-button hover:bg-primary/90 text-primary-foreground" onClick={() => router.push('/')}>
+              <Button className="w-full h-11 text-base font-semibold my-button hover:bg-primary/90 text-primary-foreground" onClick={() => router.push('/marketplace')}>
                   Go to Marketplace
                 </Button>
               <Button

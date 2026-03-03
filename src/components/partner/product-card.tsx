@@ -13,6 +13,7 @@ interface ProductCardProps {
   reviews?: number;
   inStock?: boolean;
   onPushToShopify?: () => void;
+  product?: any;
 }
 
 export default function ProductCard({
@@ -24,6 +25,8 @@ export default function ProductCard({
   reviews = 26,
   inStock = true,
   onPushToShopify,
+  product,
+
 }: ProductCardProps) {
   return (
     <div className="flex flex-col h-full bg-white rounded-lg shadow-sm p-2 hover:shadow-md transition-shadow duration-200">
@@ -31,14 +34,17 @@ export default function ProductCard({
         {" "}
         {/* Image Container */}
         <div className="relative w-full h-36 mb-3 bg-slate-100 rounded-md overflow-hidden">
-          {/* <Image src={image} alt={name} fill className="object-cover hover:scale-105 transition-transform duration-200" /> */}
+          {/* fall back image */}
+          
+          <Image src={product.images?.image_url ? product?.images[0]?.image_url : "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop"} alt={name} fill className="object-cover hover:scale-105 transition-transform duration-200" />
+
         </div>
         {/* Product Info */}
         <div className="space-y-3">
           {/* Name and Rating */}
           <div className="flex justify-between items-start gap-2">
             <h3 className="text-sm font-semibold text-slate-900 line-clamp-2">
-              {name}
+              {product?.title}
             </h3>
             <div className="flex items-center gap-1 shrink-0">
               <svg
@@ -61,11 +67,11 @@ export default function ProductCard({
           {/* Price Section */}
           <div className="flex items-center justify-between">
             <span className="text-lg font-bold text-slate-900">
-              ₹{price.toLocaleString()}
+              ₹{product?.variants[0]?.variant_price}
             </span>
             {inStock && (
               <span className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded">
-                In Stock
+                {product?.variants[0]?.variant_stock}In Stock
               </span>
             )}
           </div>
