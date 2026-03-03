@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
 import { apiClient } from '@/lib/api-client'
+import { useUser } from '@/hooks/useAuth'
+
 
 export default function ConnectPage() {
   const router = useRouter()
@@ -13,6 +15,9 @@ export default function ConnectPage() {
   const [storeUrl, setStoreUrl] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const { data: user } = useUser()
+
+  if(!user) return <div>Loading...</div>
 
   const handleConnect = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -58,10 +63,12 @@ export default function ConnectPage() {
       //   body: JSON.stringify({ storeUrl: normalizedUrl }),
       // })
 
+      const userId = user?.data?.user_id
+
     
      console.log("normalizedUrl ==>", normalizedUrl);
       // const response = useShopify(normalizedUrl);
-      const response = await apiClient.get(`dropshipper/shopify/connect?shop=${normalizedUrl}`)
+      const response = await apiClient.get(`dropshipper/shopify/connect?shop=${normalizedUrl}&userId=${userId}`)
 
       console.log("response ==>shopify",  response);
 
@@ -80,7 +87,7 @@ export default function ConnectPage() {
       setIsLoading(false)
     }
   }
-  console.log("storeUrl ==>", storeUrl);
+
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-background to-secondary/20">
