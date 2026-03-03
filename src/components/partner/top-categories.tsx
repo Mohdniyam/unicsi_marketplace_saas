@@ -143,7 +143,7 @@ export default function TopCategories() {
                   />
                 </div>
 
-                <p className="mt-4 text-sm font-semibold text-gray-800 group-hover:text-teal-600 transition-colors">
+                <p className="mt-4 text-sm font-semibold text-gray-800 group-hover:text-teal-600 transition-colors line-clamp-2 h-10">
                   {category.name}
                 </p>
               </div>
