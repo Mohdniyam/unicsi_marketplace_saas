@@ -81,7 +81,7 @@ const RtoPincodePage = () => {
               </div>
               <div className="w-[80%] py-6">
                 <Image
-                  src="/images/pin-code-map.webp"
+                  src="/pin-code-map.webp"
                   alt="Pin code map"
                   width={800}
                   height={600}
@@ -92,7 +92,7 @@ const RtoPincodePage = () => {
           </div>
           <div className="w-full px-8">
             <Image
-              src="/svg/delivery-point.svg"
+              src="/delivery-point.svg"
               alt="Delivery Point"
               width={600}
               height={400}

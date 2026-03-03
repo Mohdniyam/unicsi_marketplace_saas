@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import Image from "next/image";
 
 // =========== DATA ==========
 const steps = [
@@ -126,10 +127,13 @@ const SupplierReRoutingHero = () => {
 
       {/* Illustration */}
       <div className="flex-1 flex justify-end">
-        <img
-          src="/svg/supplier-rerouting-illustration.svg"
+        <Image
+          src="/supplier-rerouting-illustration.svg"
           alt="Supplier Re-routing"
+          width={500}
+          height={500}
           className="max-w-md w-full"
+          priority
         />
       </div>
     </div>

@@ -31,14 +31,14 @@ export function DataTable<T>({
   emptyMessage = "You don’t have any orders to show.",
 }: DataTableProps<T>) {
   return (
-    <div className="rounded-xs border bg-white">
+    <div className="rounded-xs border-none bg-white">
       <Table>
         <TableHeader className="">
           <TableRow className="">
             {columns.map((col, index) => (
               <TableHead
                 key={index}
-                className="text-xs text-black/80 font-extrabold py-6"
+                className="text-xs border-none text-black/80 font-semibold py-4 bg-gray-100 "
               >
                 {col.header}
               </TableHead>
@@ -51,7 +51,7 @@ export function DataTable<T>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="text-center py-6 text-slate-500"
+                className="text-center py-6 text-slate-500 border-none"
               >
                 Loading...
               </TableCell>
@@ -60,16 +60,16 @@ export function DataTable<T>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="text-sm font-medium text-center py-6 text-black"
+                className="text-sm font-medium text-center py-6 text-black border-none"
               >
                 {emptyMessage}
               </TableCell>
             </TableRow>
           ) : (
             data.map((row, rowIndex) => (
-              <TableRow key={rowIndex} className="text-xs">
+              <TableRow key={rowIndex} className="text-xs border-none">
                 {columns.map((col, colIndex) => (
-                  <TableCell key={colIndex}>
+                  <TableCell key={colIndex} className="border-none">
                     {col.cell
                       ? col.cell(row)
                       : (row[col.accessor] as ReactNode)}
