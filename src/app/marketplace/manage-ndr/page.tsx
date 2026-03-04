@@ -6,7 +6,11 @@ import { StoreDropdown } from "@/components/ui/store-dropdown";
 import { DataTable, Column } from "@/components/ui/data-table";
 import { Button } from "@/components/ui/button";
 import { BulkActionDropdown } from "@/components/ui/bulk-action-dropdown";
-import { Download, Upload } from "lucide-react";
+import { Download, Hash, Upload } from "lucide-react";
+import SearchFilterBar from "@/components/ui/search-bar-icon";
+import { DateDropdown } from "@/components/ui/date-dropdown";
+import { IconDropdown } from "@/components/ui/icon-dropdown";
+import { TablePagination } from "@/components/ui/table-pagination";
 
 type NdrData = {
   dateTime: string;
@@ -53,9 +57,17 @@ type ExportButtonProps = {
   onClick?: () => void;
 };
 
+const options = [
+  { label: "Order ID(s)", value: "orderId" },
+  { label: "Product Name", value: "productName" },
+  { label: "Customer Name", value: "customerName" },
+];
+
 export default function ManageNdr() {
   const [store, setStore] = useState("xxncby-gx");
   const [activeTab, setActiveTab] = useState("FAILED_DELIVERY");
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
   /* ---------------- FILTER DATA ---------------- */
   const filteredData = useMemo(() => {
@@ -160,6 +172,49 @@ export default function ManageNdr() {
 
       {/* Tabs */}
       <ActiveTabs tabs={NDR_TABS} active={activeTab} onChange={setActiveTab} />
+
+      {/* Filters */}
+      <div className="flex justify-between">
+        <div className="flex gap-1.5 items-center">
+          <SearchFilterBar options={options} />
+          <div className="flex items-center gap-2 text-sm text-black/80 whitespace-nowrap">
+            <span className="text-xs font-medium">Filter By:</span>
+            <DateDropdown label="NDR Date" />
+          </div>
+          <IconDropdown
+            label="# Delivery Attempts"
+            className="text-xs font-semibold rounded-sm text-black/80 w-60"
+            labelClassName="text-xs bg-white"
+            items={[
+              {
+                label: "<24 Hrs",
+                onClick: () => console.log("Option 1 clicked"),
+              },
+              {
+                label: "24-48 Hrs",
+                onClick: () => console.log("Option 2 clicked"),
+              },
+              {
+                label: "48+ Hrs",
+                onClick: () => console.log("Option 3 clicked"),
+              },
+            ]}
+          />
+        </div>
+        <div className="flex gap-2">
+          {/* Right Side */}
+          <div className="text-xs">
+            <TablePagination
+              pageSize={pageSize}
+              onPageSizeChange={setPageSize}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+              totalPages={5}
+              className="text-xs"
+            />
+          </div>
+        </div>
+      </div>
 
       {/* Table */}
       <DataTable columns={columns} data={filteredData} />

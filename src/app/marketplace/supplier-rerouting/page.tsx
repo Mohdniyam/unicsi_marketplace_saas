@@ -92,7 +92,7 @@ const benefits = [
 
 const SupplierReRoutingHero = () => {
   return (
-    <div className="w-full flex bg-[#f2ecfd] gap-8 p-6 items-center">
+    <div className="w-full flex bg-linear-to-b from-[#f2ecfd] to-white gap-8 p-6 items-center">
       {/* Left Content */}
       <div className="flex flex-col gap-8 max-w-xl">
         {/* Intro */}

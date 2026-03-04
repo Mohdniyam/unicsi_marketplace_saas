@@ -23,7 +23,7 @@ export function FaqSection({ items }: FaqSectionProps) {
         <AccordionItem
           key={index}
           value={`item-${index}`}
-          className="border shadow-none px-4 py-2 bg-white overflow-hidden"
+          className="border border-gray-200 rounded-xs shadow-xs px-4 py-1 bg-white overflow-hidden"
         >
           <AccordionTrigger className="text-left text-black text-base font-semibold px-6 py-4 hover:no-underline">
             {faq.question}

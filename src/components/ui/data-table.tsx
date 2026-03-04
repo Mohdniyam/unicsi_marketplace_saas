@@ -32,13 +32,13 @@ export function DataTable<T>({
 }: DataTableProps<T>) {
   return (
     <div className="rounded-xs border-none bg-white">
-      <Table>
+      <Table className="">
         <TableHeader className="">
-          <TableRow className="">
+          <TableRow className="border-none ">
             {columns.map((col, index) => (
               <TableHead
                 key={index}
-                className="text-xs border-none text-black/80 font-semibold py-4 bg-gray-100 "
+                className="text-xs text-black/80 font-semibold py-4 bg-gray-100 "
               >
                 {col.header}
               </TableHead>

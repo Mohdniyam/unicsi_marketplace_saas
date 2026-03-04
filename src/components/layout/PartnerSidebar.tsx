@@ -58,12 +58,12 @@ const menuItems = [
     href: "#",
     children: [
       {
-        label: "Inventory Request",
-        href: "/marketplace/manage-products/inventoryRequest",
-      },
-      {
         label: "Pushed To Shopify",
         href: "/marketplace/manage-products/pushedToShopify",
+      },
+      {
+        label: "Inventory Request",
+        href: "/marketplace/manage-products/inventoryRequest",
       },
     ],
     // children: [
@@ -77,7 +77,7 @@ const menuItems = [
   {
     icon: Truck,
     label: "Source a Product",
-    href: "/marketplace/source-a-product",
+    href: "/marketplace/source-product",
     // children: [
     //   { label: 'Courier Partners', href: '/admin/logistics/partners' },
     //   { label: 'Serviceability', href: '/admin/logistics/serviceability' },
@@ -108,6 +108,12 @@ const menuItems = [
     icon: TrendingUp,
     label: "Payments",
     href: "/marketplace/payments",
+    children: [
+      {
+        label: "Order Payment Tracker",
+        href: "/marketplace/payments/order-payment-tracker",
+      },
+    ],
   },
   {
     icon: Settings,
