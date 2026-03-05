@@ -1,11 +1,13 @@
 "use client";
 
-import { ShoppingCart, Heart, TrendingUp } from "lucide-react";
+import type { MouseEvent } from "react";
+import { Heart, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
-  id?: string;
+  id: string;
   name: string;
   price: number;
   image: string;
@@ -18,20 +20,42 @@ interface ProductCardProps {
 export default function ProductCard({
   id,
   name,
-  price = 0,
-  image = "",
+  price,
+  image,
   rating = 4.5,
   reviews = 26,
   inStock = true,
   onPushToShopify,
 }: ProductCardProps) {
+  const router = useRouter();
+
+  const handleImageClick = () => {
+    window.open(`/marketplace/product/${id}`, "_blank");
+  };
+
+  const handlePushToShopify = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    onPushToShopify?.();
+  };
+
+  const handleBulkOrder = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+  };
+
   return (
     <div className="flex flex-col h-full bg-white rounded-lg shadow-sm p-2 hover:shadow-md transition-shadow duration-200">
       <div className="flex-1">
-        {" "}
         {/* Image Container */}
-        <div className="relative w-full h-36 mb-3 bg-slate-100 rounded-md overflow-hidden">
-          {/* <Image src={image} alt={name} fill className="object-cover hover:scale-105 transition-transform duration-200" /> */}
+        <div
+          onClick={handleImageClick}
+          className="relative w-full h-36 mb-3 bg-slate-100 rounded-md overflow-hidden cursor-pointer"
+        >
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover hover:scale-105 transition-transform duration-200"
+          />
         </div>
         {/* Product Info */}
         <div className="space-y-3">
@@ -86,14 +110,14 @@ export default function ProductCard({
       {/* Buttons */}
       <div className="flex gap-1 py-2">
         <Button
-          onClick={onPushToShopify}
+          onClick={handlePushToShopify}
           className="flex-1 text-white text-xs bg-amber-500 hover:bg-amber-600 font-semibold py-2 rounded-lg flex items-center justify-center cursor-pointer"
         >
           Push to Shopify
         </Button>
 
         <Button
-          onClick={onPushToShopify}
+          onClick={handleBulkOrder}
           className="flex-1 bg-white text-xs text-amber-900 border border-amber-900 hover:bg-amber-900/10 font-semibold py-2 rounded-lg flex items-center justify-center cursor-pointer"
         >
           Bulk Order

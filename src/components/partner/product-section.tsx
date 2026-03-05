@@ -117,7 +117,10 @@ function ProductsBlock({
         {SAMPLE_PRODUCTS.map((product) => (
           <ProductCard
             key={product.id}
-            {...product}
+            id={product.id}
+            name={product.name}
+            price={product.price}
+            image={product.image}
             onPushToShopify={() => setIsCartOpen(true)}
           />
         ))}
