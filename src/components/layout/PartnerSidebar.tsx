@@ -55,17 +55,7 @@ const menuItems = [
   {
     icon: ShoppingCart,
     label: "Manage Products",
-    href: "#",
-    children: [
-      {
-        label: "Pushed To Shopify",
-        href: "/marketplace/manage-products/pushedToShopify",
-      },
-      {
-        label: "Inventory Request",
-        href: "/marketplace/manage-products/inventoryRequest",
-      },
-    ],
+    href: "/marketplace/manage-products",
     // children: [
     //   { label: 'All Orders', href: '/admin/orders' },
     //   { label: 'Processing', href: '/admin/orders/processing' },
@@ -107,8 +97,12 @@ const menuItems = [
   {
     icon: TrendingUp,
     label: "Payments",
-    href: "/marketplace/payments",
+    href: "#",
     children: [
+      {
+        label: "Payment History",
+        href: "/marketplace/payments",
+      },
       {
         label: "Order Payment Tracker",
         href: "/marketplace/payments/order-payment-tracker",
@@ -162,12 +156,15 @@ export function PartnerSidebar() {
     setExpandedItems(newExpanded);
   };
 
-  const isActive = (href: string) => {
+  const isActive = (href: string, hasChildren: boolean) => {
     if (href === "/marketplace") {
       return pathname === "/marketplace";
     }
 
-    return pathname === href;
+    // Agar parent ke children hain to parent active nahi hoga
+    if (hasChildren) return false;
+
+    return pathname.startsWith(href);
   };
 
   const isAnyChildActive = (children?: Array<{ href: string }>) => {
@@ -197,8 +194,7 @@ export function PartnerSidebar() {
             const Icon = item.icon;
             const hasChildren = item.children && item.children.length > 0;
             const isExpanded = expandedItems.has(item.label);
-            const active =
-              isActive(item.href) || isAnyChildActive(item.children);
+            const active = hasChildren ? false : pathname.startsWith(item.href);
 
             return (
               <li key={item.label}>

@@ -44,25 +44,25 @@ export default function DownloadMediaDropdown({
         <Button
           type="button"
           variant="outline"
-          className="h-12 rounded-full bg-white px-3 shadow-sm hover:bg-white cursor-pointer"
+          className="h-12 rounded-full bg-white shadow-2xl hover:bg-white cursor-pointer"
         >
-          <Download className="h-6 w-6" />
-          <ChevronDown className="h-5 w-5" />
+          <Download />
+          <ChevronDown />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64">
         <DropdownMenuItem
           onClick={onDownloadCurrent}
-          className="flex items-center gap-3 py-2 bg-white "
+          className="flex items-center gap-3 bg-white "
         >
-          <Download className="h-6 w-6" />
+          <Download />
           <span className="text-xs cursor-pointer">Download Current Media</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={onDownloadAll}
-          className="flex items-center gap-3 py-3"
+          className="flex items-center gap-3"
         >
-          <Download className="h-6 w-6" />
+          <Download />
           <span className="text-xs cursor-pointer">
             Download All Media ({allMediaUrls.length})
           </span>
