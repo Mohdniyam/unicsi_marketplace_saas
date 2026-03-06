@@ -16,6 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AdditionalInfoDropdown from "@/components/partner/additional-info-dropdown";
 import ProductDetailBanner from "@/components/partner/product-detail-banner";
+import DownloadMediaDropdown from "@/components/partner/download-media-dropdown";
 
 type Product = {
   id: string;
@@ -168,6 +169,7 @@ export default async function ProductDetailPage({
   const { productId } = await params;
 
   const product = SAMPLE_PRODUCTS.find((item) => item.id === productId);
+  const mediaUrls = Array.from({ length: 6 }, () => product?.image ?? "");
 
   if (!product) {
     return (
@@ -180,7 +182,6 @@ export default async function ProductDetailPage({
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <Link href="/marketplace">Back/</Link>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* LEFT SIDE - IMAGE GALLERY */}
         <div className="flex gap-4">
@@ -203,6 +204,12 @@ export default async function ProductDetailPage({
 
           {/* Main Image RIGHT */}
           <div className="relative flex-1 h-105 bg-slate-100 rounded-lg overflow-hidden">
+            <div className="absolute right-4 top-4 z-10">
+              <DownloadMediaDropdown
+                currentMediaUrl={product.image}
+                allMediaUrls={mediaUrls}
+              />
+            </div>
             <Image
               src={product.image}
               alt={product.name}
